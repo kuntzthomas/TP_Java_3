@@ -155,7 +155,7 @@ public class PizzeriaAdminConsoleApp {
 		if (!code.equals("99")) {
 			for (int i = 0; i < listePizza.length; i++) {
 
-				if (codeUpDate.equals(listePizza[i][1]) && listePizza[i] != null) {
+				if (listePizza[i] != null && codeUpDate.equals(listePizza[i][1])) {
 
 					listePizza[i] = new String[] { Integer.toString(i), code, nomPizza, prix };
 
@@ -181,8 +181,8 @@ public class PizzeriaAdminConsoleApp {
 		if (!code.equals("99")) {
 			for (int i = 0; i < listePizza.length; i++) {
 
-				if (code.equals(listePizza[i][1])) {
-					listePizza[i] = new String[] { "", "", "", "" };
+				if (listePizza[i] != null && code.equals(listePizza[i][1]) ) {
+					listePizza[i] = new String[] { null, null, null, null };
 					break;
 				}
 			}
