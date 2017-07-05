@@ -93,7 +93,7 @@ public class PizzeriaAdminConsoleApp {
 
 		for (int i = 0; i < listePizza.length; i++) {
 
-			if (listePizza[i] != null && !listePizza[i][1].isEmpty()) {
+			if (listePizza[i] != null && !listePizza[i][1].equals(null)) {
 
 				System.out.print(listePizza[i][1] + " -> " + listePizza[i][2] + " (" + listePizza[i][3] + ")");
 
@@ -118,15 +118,16 @@ public class PizzeriaAdminConsoleApp {
 		String nomPizza = questionUser.next();
 
 		System.out.println("veuillez saisir le prix");
-		Double prix = questionUser.nextDouble();
+		String prix = questionUser.next();
 
 		for (int i = 0; i < listePizza.length; i++) {
 
 			if (listePizza[i] == null) {
 
-				listePizza[i] = new String[] { Integer.toString(i), code, nomPizza, Double.toString(prix) };
+				listePizza[i] = new String[] { Integer.toString(i), code, nomPizza, prix };
 				System.out.println("Pizza ajoutée");
 				System.out.println("");
+				break;
 
 			}
 		}
