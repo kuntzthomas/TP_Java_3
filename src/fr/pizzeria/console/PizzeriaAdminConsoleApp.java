@@ -2,6 +2,11 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+/**
+ * @author Thomas
+ * 
+ * 
+ */
 public class PizzeriaAdminConsoleApp {
 
 	static String[][] listePizza = new String[50][];
@@ -9,7 +14,7 @@ public class PizzeriaAdminConsoleApp {
 	static Scanner questionUser = new Scanner(System.in);
 
 	/**
-	 * 
+	 *  Affichage du menu principal et gestion du tableau des pizzas
 	 */
 	public static void main(String args[]) {
 
@@ -18,7 +23,6 @@ public class PizzeriaAdminConsoleApp {
 
 		do {
 
-			// Affichage du menu principal
 			System.out.println("***** Pizzeria Administration *****");
 			System.out.println("1. Lister les pizzas");
 			System.out.println("2. Ajouter une nouvelle pizza");
