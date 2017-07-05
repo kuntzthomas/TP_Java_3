@@ -96,7 +96,7 @@ public class PizzeriaAdminConsoleApp {
 				System.out.println(" ");
 			}
 		}
-		
+
 		System.out.println(" ");
 	}
 
@@ -142,25 +142,25 @@ public class PizzeriaAdminConsoleApp {
 
 		System.out.println("veuillez saisir le code");
 		String code = questionUser.next();
-		
+
 		System.out.println("veuillez saisir le nom (sans espace)");
 		String nomPizza = questionUser.next();
 
 		System.out.println("veuillez saisir le prix");
 		String prix = questionUser.next();
+		if (!code.equals("99")) {
+			for (int i = 0; i < listePizza.length; i++) {
 
-		for (int i = 0; i < listePizza.length; i++) {
+				if (codeUpDate.equals(listePizza[i][1]) && listePizza[i] != null) {
 
-			if (codeUpDate.equals(listePizza[i][1]) && listePizza[i] != null) {
+					listePizza[i] = new String[] { Integer.toString(i), code, nomPizza, prix };
 
-				listePizza[i] = new String[] { Integer.toString(i), code, nomPizza, prix };
-
+				}
 			}
+
+			System.out.println("Pizza mise à jour");
+			System.out.println("");
 		}
-
-		System.out.println("Pizza mise à jour");
-		System.out.println("");
-
 	}
 
 	/**
@@ -174,17 +174,18 @@ public class PizzeriaAdminConsoleApp {
 
 		System.out.println("veuillez saisir le code");
 		String code = questionUser.next();
+		if (!code.equals("99")) {
+			for (int i = 0; i < listePizza.length; i++) {
 
-		for (int i = 0; i < listePizza.length; i++) {
-
-			if (code.equals(listePizza[i][1])) {
-				listePizza[i] = new String[] { "", "", "", "" };
-
+				if (code.equals(listePizza[i][1])) {
+					listePizza[i] = new String[] { "", "", "", "" };
+					break;
+				}
 			}
+
+			System.out.println("Pizza supprimée");
+			System.out.println("");
+
 		}
-
-		System.out.println("Pizza supprimée");
-
 	}
-
 }
