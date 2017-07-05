@@ -2,85 +2,182 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
-/**
- * @author ETY19
- *
- */
 public class PizzeriaAdminConsoleApp {
-	
-	static String[][] listePizza = new String[8][];
-	static String[][] commande = new String[50][];
 
+	static String[][] listePizza = new String[50][];
+
+	static Scanner questionUser = new Scanner(System.in);
+
+	/**
+	 * 
+	 */
 	public static void main(String args[]) {
-		
+
 		initPizzas();
+		int choixMenu = 0;
 
-		// Affichage du menu principal
-		System.out.println("***** Pizzeria Administration *****");
-		System.out.println("1. Lister les pizzas");
-		System.out.println("2. Ajouter une nouvelle pizza");
-		System.out.println("3. Mettre à jour une pizza");
-		System.out.println("4. Supprimer une pizza");
-		System.out.println("99. Sortir");
+		do {
 
-		// Choix menu
-		Scanner questionUser = new Scanner(System.in);
-		int choixMenu = questionUser.nextInt();
+			// Affichage du menu principal
+			System.out.println("***** Pizzeria Administration *****");
+			System.out.println("1. Lister les pizzas");
+			System.out.println("2. Ajouter une nouvelle pizza");
+			System.out.println("3. Mettre à jour une pizza");
+			System.out.println("4. Supprimer une pizza");
+			System.out.println("99. Sortir");
 
-		switch (choixMenu) {
+			choixMenu = questionUser.nextInt();
 
-		case 1:
-			System.out.println("1. Liste des pizzas");
-			for (int i=0 ; i < listePizza.length ; i++) {
-				for (int j=0 ; j < listePizza[i].length; j++){
-					System.out.print(listePizza[i][j] + " ");
-				}
-				System.out.println(" ");
+			switch (choixMenu) {
+
+			case 1:
+
+				listeDesPizzas();
+
+				break;
+
+			case 2:
+
+				ajoutPizza();
+
+				break;
+
+			case 3:
+
+				upDatePizza();
+
+				break;
+
+			case 4:
+
+				supprimerPizza();
+
+				break;
+
+			case 99:
+				System.out.println("Aurevoir");
+				break;
+
+			default:
+				System.out.println("Veuillez entrer un numero de menu valide");
 			}
-			Scanner questionUser1 = new Scanner(System.in);
-			int choixMenu1 = questionUser.nextInt();
-			
-			
-			main(args);
-			break;
+		} while (choixMenu != 99);
+	}
 
-		case 2:
-			System.out.println("2. Ajout d'une nouvelle pizza");
-			main(args);
-			break;
+	/**
+	 * Initialisation du tableau des pizzas
+	 */
+	private static void initPizzas() {
 
-		case 3:
-			System.out.println("3. Mise à jour d'une pizza");
-			main(args);
-			break;
+		listePizza[0] = new String[] { "0", "PEP", "Pépéroni", "12.50" };
+		listePizza[1] = new String[] { "1", "MAR", "Margherita", "14.00" };
+		listePizza[2] = new String[] { "2", "REI", "La Reine", "11.50" };
+		listePizza[3] = new String[] { "3", "FRO", "La 4 fromage", "12.00" };
+		listePizza[4] = new String[] { "4", "CAN", "La cannibale", "12.50" };
+		listePizza[5] = new String[] { "5", "SAV", "La savoyarde", "13.00" };
+		listePizza[6] = new String[] { "6", "ORI", "L'orientale", "13.50" };
+		listePizza[7] = new String[] { "7", "IND", "L'indienne", "14.00" };
 
-		case 4:
-			System.out.println("4. Suppréssion d'une pizza");
-			main(args);
-			break;
+	}
 
-		case 99:
-			System.out.println("Aurevoir");
-			main(args);
-			break;
+	/**
+	 * Affichage de la liste des Pizza
+	 */
+	private static void listeDesPizzas() {
 
-		default:
-			System.out.println("Veuillez entrer un numero de menu valide");
-			main(args);
+		System.out.println("1. Liste des pizzas");
+
+		for (int i = 0; i < listePizza.length; i++) {
+
+			if (listePizza[i] != null && !listePizza[i][1].isEmpty()) {
+
+				System.out.print(listePizza[i][1] + " -> " + listePizza[i][2] + " (" + listePizza[i][3] + ")");
+			}
+
+			System.out.println(" ");
+		}
+	}
+
+	/**
+	 * Ajout d'une nouvelle pizza dans le tableau
+	 */
+	private static void ajoutPizza() {
+
+		System.out.println("2. Ajout d'une nouvelle pizza");
+
+		System.out.println("veuillez saisir le code");
+		String code = questionUser.next();
+
+		System.out.println("veuillez saisir le nom (sans espace)");
+		String nomPizza = questionUser.next();
+
+		System.out.println("veuillez saisir le prix");
+		Double prix = questionUser.nextDouble();
+
+		for (int i = 0; i < listePizza.length; i++) {
+
+			if (listePizza[i] == null) {
+
+				listePizza[i] = new String[] { Integer.toString(i), code, nomPizza, Double.toString(prix) };
+				System.out.println("Pizza ajoutée");
+				System.out.println("");
+
+			}
+
+		}
+	}
+
+	/**
+	 * Mise à jour d'une pizza dans le tableau
+	 */
+	private static void upDatePizza() {
+
+		System.out.println("3. Mettre à jour une pizza");
+
+		listeDesPizzas();
+
+		System.out.println("veuillez saisir le code");
+		String code = questionUser.next();
+
+		System.out.println("veuillez saisir le nom (sans espace)");
+		String nomPizza = questionUser.next();
+
+		System.out.println("veuillez saisir le prix");
+		String prix = questionUser.next();
+
+		for (int i = 0; i < listePizza.length; i++) {
+
+			if (code.equals(listePizza[i][1])) {
+				listePizza[i] = new String[] { Integer.toString(i), code, nomPizza, prix };
+
+			}
 		}
 
-	}
-
-	private static void initPizzas() {
-		
-		listePizza[0] = new String[]{"0", "PEP", "Pépéroni", "12.50"};
-		listePizza[1] = new String[]{"1", "MAR", "Margherita", "14.00"};
-		listePizza[2] = new String[]{"2", "REI", "La Reine", "11.50"};
-		listePizza[3] = new String[]{"3", "FRO", "La 4 fromage", "12.00"};
-		listePizza[4] = new String[]{"4", "CAN", "La cannibale", "12.50"};
-		listePizza[5] = new String[]{"5", "SAV", "La savoyarde", "13.00"};
-		listePizza[6] = new String[]{"6", "ORI", "L'orientale", "13.50"};
-		listePizza[7] = new String[]{"7", "IND", "L'indienne", "14.00"};
+		System.out.println("Pizza mise à jour");
+		System.out.println("");
 
 	}
+
+	/**
+	 * Suppression d'une pizza dans le tableau
+	 */
+	private static void supprimerPizza() {
+
+		System.out.println("4. Suppréssion d'une pizza");
+
+		listeDesPizzas();
+
+		System.out.println("veuillez saisir le code");
+		String code = questionUser.next();
+
+		for (int i = 0; i < listePizza.length; i++) {
+
+			if (code.equals(listePizza[i][1])) {
+				listePizza[i] = new String[] { "", "", "", "" };
+
+			}
+		}
+		System.out.println("Pizza supprimée");
+	}
+
 }
