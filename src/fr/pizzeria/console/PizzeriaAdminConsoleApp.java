@@ -59,7 +59,7 @@ public class PizzeriaAdminConsoleApp {
 				break;
 
 			default:
-				System.out.println("Veuillez entrer un numero de menu valide");
+				System.out.println("Veuillez saisir un numero de menu valide");
 			}
 		} while (choixMenu != 99);
 	}
@@ -81,7 +81,7 @@ public class PizzeriaAdminConsoleApp {
 	}
 
 	/**
-	 * Affichage de la liste des Pizza
+	 * Affichage de la liste des Pizzas
 	 */
 	private static void listeDesPizzas() {
 
@@ -92,10 +92,12 @@ public class PizzeriaAdminConsoleApp {
 			if (listePizza[i] != null && !listePizza[i][1].isEmpty()) {
 
 				System.out.print(listePizza[i][1] + " -> " + listePizza[i][2] + " (" + listePizza[i][3] + ")");
-			}
 
-			System.out.println(" ");
+				System.out.println(" ");
+			}
 		}
+		
+		System.out.println(" ");
 	}
 
 	/**
@@ -123,7 +125,6 @@ public class PizzeriaAdminConsoleApp {
 				System.out.println("");
 
 			}
-
 		}
 	}
 
@@ -137,8 +138,11 @@ public class PizzeriaAdminConsoleApp {
 		listeDesPizzas();
 
 		System.out.println("veuillez saisir le code");
-		String code = questionUser.next();
+		String codeUpDate = questionUser.next();
 
+		System.out.println("veuillez saisir le code");
+		String code = questionUser.next();
+		
 		System.out.println("veuillez saisir le nom (sans espace)");
 		String nomPizza = questionUser.next();
 
@@ -147,7 +151,8 @@ public class PizzeriaAdminConsoleApp {
 
 		for (int i = 0; i < listePizza.length; i++) {
 
-			if (code.equals(listePizza[i][1])) {
+			if (codeUpDate.equals(listePizza[i][1]) && listePizza[i] != null) {
+
 				listePizza[i] = new String[] { Integer.toString(i), code, nomPizza, prix };
 
 			}
@@ -177,7 +182,9 @@ public class PizzeriaAdminConsoleApp {
 
 			}
 		}
+
 		System.out.println("Pizza supprimée");
+
 	}
 
 }
